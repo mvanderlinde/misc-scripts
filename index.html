@@ -60,11 +60,12 @@
     resetCameraBubblePosition();
   });
 
+  let messageListener;
   const resetCameraBubblePosition = () => {
     document.querySelector('#btn-reset-camera').innerHTML = '⏳ Please open the VY Chrome extension...';
     document.querySelector('#btn-reset-camera').setAttribute('disabled', 'disabled');
     
-    const messageListener = window.addEventListener('message', e => {
+    messageListener = window.addEventListener('message', e => {
       if (e.origin === 'chrome-extension://jiihcciniecimeajcniapbngjjbonjan') {
         document.querySelector('#viewedit-app').shadowRoot.querySelector('#fixed-camera').style.cssText = 'top: 100px; left: 100px';
         document.querySelector('#btn-reset-camera').innerHTML = '🧭 Reset Camera Bubble Position';
