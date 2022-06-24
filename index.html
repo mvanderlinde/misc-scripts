@@ -46,9 +46,9 @@
       <section id="main_content">
         <h2 id="chrome-ext-camera-fix">Vidyard Chrome Extension - Camera Position Fix</h2>
 
-<p>If you&rsquo;ve managed to get the camera bubble stuck off screen in the VY Chrome extension, click the button below to reset its position.</p>
+        <p>If you&rsquo;ve managed to get the camera bubble stuck off screen in the VY Chrome extension, click the button below to reset its position.</p>
 
-        <a href="#" class="btn" id="btn-reset-camera">Reset Camera Bubble Position</a>
+        <a href="#" class="btn" id="btn-reset-camera">🧭 Reset Camera Bubble Position</a>
 
       </section>
     </div>
@@ -56,16 +56,19 @@
   <script>
   document.querySelector('#btn-reset-camera').addEventListener('click', e => {
     e.preventDefault();
+    e.stopImmediatePropagation();
     resetCameraBubblePosition();
   });
 
   const resetCameraBubblePosition = () => {
     document.querySelector('#btn-reset-camera').innerHTML = '⏳ Please open the VY Chrome extension...';
+    document.querySelector('#btn-reset-camera').setAttribute('disabled', 'disabled');
     
     window.addEventListener('message', e => {
       if (e.origin === 'chrome-extension://jiihcciniecimeajcniapbngjjbonjan') {
-            document.querySelector('#viewedit-app').shadowRoot.querySelector('#fixed-camera').style.cssText = 'top: 100px; left: 100px';
-            document.querySelector('#btn-reset-camera').innerHTML = 'Reset Camera Bubble Position';
+        document.querySelector('#viewedit-app').shadowRoot.querySelector('#fixed-camera').style.cssText = 'top: 100px; left: 100px';
+        document.querySelector('#btn-reset-camera').innerHTML = '🧭 Reset Camera Bubble Position';
+        document.querySelector('#btn-reset-camera').removeAttribute('disabled');
       }
     });
   }
