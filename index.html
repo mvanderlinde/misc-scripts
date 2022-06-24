@@ -48,15 +48,18 @@
 
 <p>If you&rsquo;ve managed to get the camera bubble stuck off screen in the VY Chrome extension, click the button below to reset its position.</p>
 
-        <a href="#" class="btn" onclick="resetCameraBubblePosition()" id="btn-reset-camera">Reset Camera Bubble Position</a>
+        <a href="#" class="btn" id="btn-reset-camera">Reset Camera Bubble Position</a>
 
       </section>
     </div>
     
   <script>
-  const resetCameraBubblePosition = (e) => {
-    if (e) e.preventDefault();
+  document.querySelector('#btn-reset-camera').addEventListener('click', e => {
+    e.preventDefault();
+    resetCameraBubblePosition();
+  });
 
+  const resetCameraBubblePosition = () => {
     document.querySelector('#btn-reset-camera').innerHTML = '⏳ Please open the VY Chrome extension...';
     
     window.addEventListener('message', e => {
